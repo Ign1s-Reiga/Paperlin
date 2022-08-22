@@ -18,7 +18,7 @@ You have to add Jitpack repository to your build file(ex. pom.xml, build.gradle)
     <dependency>
         <groupId>com.github.Ign1s-Reiga</groupId>
         <artifactId>Paperlin</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.2</version>
     </dependency>
 </dependencies>
 
@@ -32,7 +32,7 @@ allProjects {
 }
 
 dependencies {
-    implementaion 'com.github.Ign1s-Reiga:Paperlin:1.0.1'
+    implementaion 'com.github.Ign1s-Reiga:Paperlin:1.0.2'
 }
 ```
 
