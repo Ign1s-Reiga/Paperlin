@@ -1,4 +1,4 @@
-package dev.reiga7953.paperlin
+package net.reiga7953.paperlin
 
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender

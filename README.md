@@ -1,5 +1,41 @@
 # Paperlin - A Kotlin Library for PaperMC
 
+# Installation
+
+Using [jitpack](https://jitpack.io) to distribute this library.  
+You have to add Jitpack repository to your build file(ex. pom.xml, build.gradle).
+
+### Maven
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>com.github.Ign1s-Reiga</groupId>
+        <artifactId>Paperlin</artifactId>
+        <version>1.0.1</version>
+    </dependency>
+</dependencies>
+
+```
+### Gradle
+```
+allProjects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+dependencies {
+    implementaion 'com.github.Ign1s-Reiga:Paperlin:1.0.1'
+}
+```
+
 # Usage
 
 ### Simplified componentization

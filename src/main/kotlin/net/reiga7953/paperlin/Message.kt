@@ -1,6 +1,5 @@
-package dev.reiga7953.paperlin
+package net.reiga7953.paperlin
 
-import net.md_5.bungee.api.chat.TextComponent
 import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.FileWriter
@@ -32,18 +31,15 @@ fun JavaPlugin.logToFile(action: PrintWriter.() -> Unit) =
 
 fun CommandSender.sendMessage(msg: String?) {
     try {
-        if (msg != null) sendMessage(textOf(msg))
+        if (msg != null) sendMessage(msg.translateColorCode())
     } catch (ex: Error) {
         colored(msg, ::sendMessage)
     }
 }
 
-fun CommandSender.sendMessage(text: TextComponent) = spigot().sendMessage(text)
 fun CommandSender.sendMessage(e: Exception) = sendMessage(e.message)
 
 fun String.translateColorCode() = replace(Regex("&([A-Za-z0-9])")) { "§" + it.groups[1]!!.value }
-
-fun textOf(string: String, builder: TextComponent.() -> Unit = {}) = TextComponent(*TextComponent.fromLegacyText(string.translateColorCode())).apply(builder)
 
 class PluginException(msg: String) : Exception("&c$msg")
 

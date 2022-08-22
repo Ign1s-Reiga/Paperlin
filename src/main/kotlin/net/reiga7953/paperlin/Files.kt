@@ -1,4 +1,4 @@
-package dev.reiga7953.paperlin
+package net.reiga7953.paperlin
 
 import java.io.File
 
