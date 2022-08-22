@@ -1,4 +1,4 @@
-# SpiKotlin - Kotlin Library for SpigotAPI
+# Paperlin - A Kotlin Library for PaperMC
 
 # Usage
 
@@ -6,13 +6,13 @@
 
 You can componentize and colorize any message
 
-##### With SpiKotlin
+##### With Paperlin
 
 ```kotlin
 textOf("&bHello world!")
 ```
 
-##### Without SpiKotlin
+##### Without Paperlin
 
 ```kotlin
 TextComponent(*fromLegacyText(ChatColor.translateAlternateColorCodes("&", "&bHello world")))
@@ -22,13 +22,13 @@ TextComponent(*fromLegacyText(ChatColor.translateAlternateColorCodes("&", "&bHel
 
 Let's send a message to a player (any Player, ProxiedPlayer, CommandSender is supported)
 
-##### With SpiKotlin
+##### With Paperlin
 
 ```kotlin
 player.msg("&bHello world!")
 ```
 
-##### Without SpiKotlin (not deprecated)
+##### Without Paperlin (not deprecated)
 
 ```kotlin
 player.sendMessage(TextComponent(*fromLegacyText(ChatColor.translateAlternateColorCodes("&", "&bHello world"))))
@@ -38,7 +38,7 @@ player.sendMessage(TextComponent(*fromLegacyText(ChatColor.translateAlternateCol
 
 You can use listen() to easily listen to events
 
-##### With SpiKotlin
+##### With Paperlin
 
 ```kotlin
 listen<PlayerJoinEvent>{
@@ -46,7 +46,7 @@ listen<PlayerJoinEvent>{
 }
 ```
 
-##### Without SpiKotlin
+##### Without Paperlin
 
 ```kotlin
 server.pluginManager.registerEvent(object: Listener{
@@ -110,13 +110,13 @@ schedule(period = ...) {
 
 You can easily access a file or a subfolder with the get() operator applied to a File
 
-##### With SpiKotlin
+##### With Paperlin
 ```kotlin
 val config = dataFolder["config.yml"]
 val lang = dataFolder["langs"]["en_US.yml"]
 ```
 
-##### Without SpiKotlin
+##### Without Paperlin
 ```kotlin
 val config = File(dataFolder, "config.yml")
 val lang = File(File(dataFolder, "langs"), "en_US.yml")
@@ -237,12 +237,12 @@ You can use info(), warning() and severe() with String or Exception to log them 
 
 You can also use logToFile() to write to a file named "log.txt" in your plugin's data folder
 
-##### With SpiKotlin
+##### With Paperlin
 ```kotlin
 info("Hello world!")
 ```
 
-##### Without SpiKotlin
+##### Without Paperlin
 ```kotlin
 logger.info("Hello world!")
 ```
@@ -254,7 +254,7 @@ getLogger().info("Hello world!");
 
 ### Simplified commands
 
-##### With SpiKotlin
+##### With Paperlin
 ```kotlin
 // Example on Bukkit
 command("hello"){ sender, args ->
@@ -269,7 +269,7 @@ command("test") {
 }
 ```
 
-##### Without SpiKotlin
+##### Without Paperlin
 ```kotlin
 // Bungee
 proxy.pluginManager.registerCommand(this,
@@ -292,7 +292,7 @@ getCommand("hello").executor = CommandExecutor {
 
 Exceptions can be catched with a beautiful syntax
 
-##### With SpiKotlin
+##### With Paperlin
 ```kotlin
 // This will catch any exception and log it as a warning
 catch<Exception>(::warning){
@@ -301,7 +301,7 @@ catch<Exception>(::warning){
 }
 ```
 
-##### Without SpiKotlin
+##### Without Paperlin
 ```kotlin
 try{
     throw Exception("An error occured")
@@ -386,18 +386,18 @@ You can use .not() to check inequality of any object
 - returns null if object == other
 - returns object if object != other
 
-##### With SpiKotlin
+##### With Paperlin
 ```kotlin
 val delay = config.getLong("delay").not(0) // Assignment + Check
     ?: return warning("Delay should not be 0")
 ```
 
-##### Without SpiKotlin
+##### Without Paperlin
 ```kotlin
 val delay = config.getLong("delay")  // Assignment
 if(delay == 0) return warning("Delay should not be 0") // Check
 ```
 
 # License
-SpiKotlin is referenced or quoted from [KUtils](https://github.com/hazae41/mc-kutils) made by hazae41.  
+Paperlin is referenced or quoted from [KUtils](https://github.com/hazae41/mc-kutils) made by hazae41.  
 KUtils License: [LICENSE](LICENSE)

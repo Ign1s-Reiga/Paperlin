@@ -1,4 +1,4 @@
-package dev.reiga7953.spikotlin
+package dev.reiga7953.paperlin
 
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitTask
@@ -6,12 +6,8 @@ import java.util.concurrent.TimeUnit
 
 fun JavaPlugin.cancelTasks() = server.scheduler.cancelTasks(this)
 
-fun JavaPlugin.schedule(
-    async: Boolean = false,
-    sdelay: Long = 0,
-    speriod: Long = 0,
-    unit: TimeUnit = TimeUnit.SECONDS,
-    callback: BukkitTask.() -> Unit
+fun JavaPlugin.schedule(async: Boolean = false, sdelay: Long = 0, speriod: Long = 0,
+                        unit: TimeUnit = TimeUnit.SECONDS, callback: BukkitTask.() -> Unit
 ): BukkitTask = let { plugin ->
     lateinit var task: BukkitTask
     fun f() = task.callback()

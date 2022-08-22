@@ -1,7 +1,7 @@
-package dev.reiga7953.spikotlin
+package dev.reiga7953.paperlin
 
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 import java.util.concurrent.TimeUnit
 
 val String.purified get() = lowercase().trim()

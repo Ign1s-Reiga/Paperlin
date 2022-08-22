@@ -1,4 +1,4 @@
-package dev.reiga7953.spikotlin
+package dev.reiga7953.paperlin
 
 import org.bukkit.Bukkit
 

@@ -1,4 +1,4 @@
-package dev.reiga7953.spikotlin
+package dev.reiga7953.paperlin
 
 import net.md_5.bungee.api.chat.TextComponent
 import org.bukkit.command.CommandSender
@@ -7,20 +7,20 @@ import java.io.FileWriter
 import java.io.PrintWriter
 
 fun JavaPlugin.info(msg: String?) = colored(msg, logger::info)
-fun JavaPlugin.info(ex: Exception) = info(ex.message)
+fun JavaPlugin.info(e: Exception) = info(e.message)
 
 fun JavaPlugin.warning(msg: String?) = colored(msg, logger::warning)
-fun JavaPlugin.warning(ex: Exception) = warning(ex.message)
+fun JavaPlugin.warning(e: Exception) = warning(e.message)
 
 fun JavaPlugin.severe(msg: String?) = colored(msg, logger::severe)
-fun JavaPlugin.severe(ex: Exception) = severe(ex.message)
+fun JavaPlugin.severe(e: Exception) = severe(e.message)
 
-fun JavaPlugin.error(ex: Exception) {
-    severe(ex.message ?: "&cAn internal error occured, check the logs");
-    logToFile(ex)
+fun JavaPlugin.error(e: Exception) {
+    severe(e.message ?: "&cAn internal error occured, check the logs");
+    logToFile(e)
 }
 
-fun JavaPlugin.logToFile(ex: Exception) = logToFile { ex.printStackTrace(this) }
+fun JavaPlugin.logToFile(e: Exception) = logToFile { e.printStackTrace(this) }
 fun JavaPlugin.logToFile(msg: String) = logToFile { println(msg) }
 
 val JavaPlugin.logFile
@@ -30,21 +30,20 @@ fun JavaPlugin.logToFile(action: PrintWriter.() -> Unit) =
     PrintWriter(FileWriter(logFile, true), true)
             .apply { print(currentDate); action() }.close()
 
-fun CommandSender.msg(msg: String?) {
+fun CommandSender.sendMessage(msg: String?) {
     try {
-        if (msg != null) msg(textOf(msg))
+        if (msg != null) sendMessage(textOf(msg))
     } catch (ex: Error) {
         colored(msg, ::sendMessage)
     }
 }
 
-fun CommandSender.msg(text: TextComponent) = spigot().sendMessage(text)
-fun CommandSender.msg(ex: Exception) = msg(ex.message)
+fun CommandSender.sendMessage(text: TextComponent) = spigot().sendMessage(text)
+fun CommandSender.sendMessage(e: Exception) = sendMessage(e.message)
 
 fun String.translateColorCode() = replace(Regex("&([A-Za-z0-9])")) { "§" + it.groups[1]!!.value }
 
-fun textOf(string: String, builder: TextComponent.() -> Unit = {}) =
-    TextComponent(*TextComponent.fromLegacyText(string.translateColorCode())).apply(builder)
+fun textOf(string: String, builder: TextComponent.() -> Unit = {}) = TextComponent(*TextComponent.fromLegacyText(string.translateColorCode())).apply(builder)
 
 class PluginException(msg: String) : Exception("&c$msg")
 

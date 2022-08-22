@@ -1,4 +1,4 @@
-package dev.reiga7953.spikotlin
+package dev.reiga7953.paperlin
 
 import org.bukkit.Color
 import org.bukkit.Location
@@ -14,11 +14,11 @@ import java.io.File
 
 import kotlin.reflect.KProperty
 
-val YamlConfiguration.keys get() = getKeys(false)
+val YamlConfiguration.keys: MutableSet<String> get() = getKeys(false)
 fun YamlConfiguration.section(path: String) = getConfigurationSection(path)
 val YamlConfiguration.sections get() = keys.map { section(it) }
 
-val ConfigurationSection.keys get() = getKeys(false)
+val ConfigurationSection.keys: MutableSet<String> get() = getKeys(false)
 fun ConfigurationSection.section(path: String) = getConfigurationSection(path)
 val ConfigurationSection.sections get() = keys.map { section(it) }
 
@@ -146,8 +146,7 @@ abstract class Config {
         operator fun setValue(ref: Any?, prop: KProperty<*>, value: OfflinePlayer?) = set(path, value)
     }
 
-    open inner class vector(val path: String, val def:
-    Vector? = null) {
+    open inner class vector(val path: String, val def: Vector? = null) {
         operator fun getValue(ref: Any?, prop: KProperty<*>): Vector? = config.getVector(path, def)
         operator fun setValue(ref: Any?, prop: KProperty<*>, value: Vector?) = set(path, value)
     }
@@ -157,11 +156,7 @@ abstract class Config {
         operator fun setValue(ref: Any?, prop: KProperty<*>, value: Location?) = set(path, value)
     }
 
-    open inner class serializable<T : ConfigurationSerializable>(
-        val path: String,
-        val clazz: Class<T>,
-        val def: T? = null
-    ) {
+    open inner class serializable<T : ConfigurationSerializable>(val path: String, val clazz: Class<T>, val def: T? = null) {
         operator fun getValue(ref: Any?, prop: KProperty<*>): T? = config.getSerializable(path, clazz, def)
         operator fun setValue(ref: Any?, prop: KProperty<*>, value: T?) = set(path, value)
     }
@@ -202,10 +197,7 @@ open class ConfigFile(open var file: File?) : Config() {
 
 open class PluginConfigFile(open var path: String) : ConfigFile(null)
 
-open class ConfigSection(
-    open var parent: Config, open var path: String
-) : Config() {
-
+open class ConfigSection(open var parent: Config, open var path: String) : Config() {
     override var config: ConfigurationSection
         get() {
             val config = parent.config.getConfigurationSection(path)
