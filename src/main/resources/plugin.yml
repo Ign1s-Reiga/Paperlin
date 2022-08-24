@@ -1,4 +1,0 @@
-name: SpiKotlin
-version: '${project.version}'
-main: dev.reiga7953.spikotlin.SpiKotlin
-api-version: 1.19
