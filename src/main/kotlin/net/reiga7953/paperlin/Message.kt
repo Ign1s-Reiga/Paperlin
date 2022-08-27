@@ -22,12 +22,10 @@ fun JavaPlugin.error(e: Exception) {
 fun JavaPlugin.logToFile(e: Exception) = logToFile { e.printStackTrace(this) }
 fun JavaPlugin.logToFile(msg: String) = logToFile { println(msg) }
 
-val JavaPlugin.logFile
-    get() = dataFolder["log.txt"].apply { if (!exists()) createNewFile() }
+val JavaPlugin.logFile get() = dataFolder["log.txt"].apply { if (!exists()) createNewFile() }
 
-fun JavaPlugin.logToFile(action: PrintWriter.() -> Unit) =
-    PrintWriter(FileWriter(logFile, true), true)
-            .apply { print(currentDate); action() }.close()
+fun JavaPlugin.logToFile(action: PrintWriter.() -> Unit) = PrintWriter(FileWriter(logFile, true), true)
+        .apply { print(currentDate); action() }.close()
 
 fun CommandSender.sendMessage(msg: String?) {
     try {
